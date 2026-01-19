@@ -1,0 +1,11 @@
+curl http://192.168.1.221:1234/v1/chat/completions -w '@timing.txt' -H "Content-Type: application/json" -d '{"model": "meta-llama/Llama-3.2-1B-Instruct", "messages": [{"role": "user", "content": "what is a qubit?"}]}'
+
+curl -d'{ "temperature": 0.2, "max_tokens": 1024, "messages": [{"role": "system", "content": "You are a helpful assistant. Be concise and to the point when replying"},{"role":"user", "content":"create a template for software architecture design"}]}' http://192.168.1.29:8082/v1/chat/completions
+
+curl https://api.x.ai/v1/chat/completions -H "Content-Type: application/json" -H "Authorization: Bearer XXX" -d '{"messages": [{"role": "user","content": "What is the trend on unikernel adoption for enterprise systems?"}],"model": "grok-4","stream": false,"temperature": 0.2}'
+
+curl https://api.anthropic.com/v1/messages -H "x-api-key: XXX" -H "anthropic-version: 2023-06-01" -H "content-type: application/json" -d'{"model": "claude-sonnet-4-20250514","max_tokens": 1024,"messages": [{"role": "user", "content": "What is the trend on unikernel adoption for enterprise systems?"}]}'
+
+curl https://api.openai.com/v1/completions -H "Content-Type: application/json" -H "Authorization: Bearer YOUR_API_KEY" -d '{"model": "text-davinci-003", "prompt": "Say this is a test", "temperature": 0.2, "max_tokens": 1024}'
+
+

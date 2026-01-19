@@ -1,0 +1,8 @@
+{
+	"name": "unikernel-ai-grok-service",
+	"description": "An ai unikernel grok service written in Rust",
+	"log_level": "debug",
+	"api_key": "",
+	"base_url": "https://api.x.ai/v1/responses",
+	"server_port": 8084
+}
