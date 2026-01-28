@@ -6,6 +6,7 @@ use hyper::service::service_fn;
 use hyper_util::rt::TokioIo;
 use mimalloc::MiMalloc;
 use std::collections::HashMap;
+use std::fs;
 use std::net::{Ipv4Addr, SocketAddr};
 use std::sync::Mutex;
 use tokio::net::TcpListener;
@@ -33,7 +34,7 @@ fn main() {
     let parameters = match res_params {
         Ok(params) => params,
         Err(e) => {
-            log::error!("{:?}", e.to_string());
+            eprintln!("{}", e);
             std::process::exit(1);
         }
     };
@@ -53,8 +54,21 @@ fn main() {
 
     // parameters used in service
     let mut hm: HashMap<String, String> = HashMap::new();
+    // read api key from disk
+    let res_content = fs::read_to_string(parameters.api_key_path);
+    match res_content {
+        Ok(content) => {
+            hm.insert(
+                "api_key".to_string(),
+                content.trim().to_string().replace("\n", ""),
+            );
+        }
+        Err(e) => {
+            log::error!("[main] openai api key {}", e);
+            std::process::exit(1);
+        }
+    }
     hm.insert("base_url".to_owned(), parameters.base_url.to_owned());
-    hm.insert("api_key".to_owned(), parameters.api_key);
     *MAP_LOOKUP.lock().unwrap() = Some(hm.clone());
 
     log::info!("application : {}", env!("CARGO_PKG_NAME"));

@@ -1,6 +1,6 @@
 [package]
 name = "ai-unikernel-grok-service"
-version = "0.2.3"
+version = "0.2.5"
 edition = "2024"
 authors = ["luigizuccarelli@gmail.com"]
 

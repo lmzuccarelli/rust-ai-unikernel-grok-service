@@ -7,7 +7,7 @@ pub struct Parameters {
     pub description: String,
     pub log_level: String,
     pub base_url: String,
-    pub api_key: String,
+    pub api_key_path: String,
     pub server_port: usize,
 }
 
